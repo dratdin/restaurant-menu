@@ -1,0 +1,8 @@
+-r requirements.txt
+
+bandit
+black
+isort
+safety
+flake8
+coverage

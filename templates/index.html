@@ -1,0 +1,86 @@
+{% load static %}
+{% load categories %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Food Menu | Healthy and tasty food!</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body style>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand" href="/">Menu</a>
+      <a class="Cart my-2 my-lg-0" href="{% url 'carts' %}">
+        <div class="cart">
+          <img class="cart__img" src="{% static 'img/cart.png' %}" alt="">
+          <div class="cart__info">
+            <div class="cart__name"></div>
+            <div class="cart__Count">
+              Items count:
+              <span class="cart__count"></span>
+              ($<span class="cart__sum"></span>)
+            </div>
+          </div>
+
+        </div>
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row no-gutters">
+      <nav class="col-2 d-none d-sm-block bg-light sidebar pt-2">
+        <ul class="nav nav-pills flex-column">
+          {% get_categories as categories %}
+          {% for category in categories %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ category.get_absolute_url }}">
+              {{ category.name }}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <main class="col-sm-9 ml-sm-auto col-md-10" role="main">
+      {% block content %} <!-- BLOCK CONTENT -->
+      <h1>Menu
+        <!-- asc desc reset current page -->
+        <a href="?page=1&sort=asc">Asc</a>
+        <a href="?page=1&sort=desc">Desc</a>
+      </h1>
+      <div class="row text-center placeholders">
+        {% for dish in dishes %}
+        <div class="product col-4 placeholder mb-4">
+          <div class="card">
+            <a href="{{ dish.get_absolute_url }}">
+              <div class="product__img" style="background-image: url('{{ dish.image.url }}')"></div>
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">{{ dish.name }}</h4>
+              <button data-url="{% url 'carts-api:add-to-cart' dish_id=dish.id quantity=1 %}" class="btn btn-primary cart-add">Add to cart</button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% include 'paginator.html' with page=dishes sort=sort %}
+
+      {% endblock content %} <!-- ENDBLOCK CONTENT -->
+      </main>
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>

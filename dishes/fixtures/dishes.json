@@ -1,0 +1,560 @@
+[
+  {
+    "model": "dishes.dish",
+    "pk": 1,
+    "fields": {
+      "name": "Hamburger",
+      "description": "A hamburger or burger is a sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun",
+      "image": "dishes/fixtures/burgers/hamburger.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "1.20",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:09:00",
+      "for_vegan": false,
+      "slug": "hamburger",
+      "category": 1
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 2,
+    "fields": {
+      "name": "Big tasty",
+      "description": "The Big N’ Tasty is a cheeseburger sold by the international fast food chain McDonald's. It is designed to compete with the Burger King Whopper sandwich",
+      "image": "dishes/fixtures/burgers/big-tasty.png",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "3.20",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:12:00",
+      "for_vegan": false,
+      "slug": "big-tasty",
+      "category": 1
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 3,
+    "fields": {
+      "name": "Veggie burger",
+      "description": "It is a burger for vegan consist vegetables!",
+      "image": "dishes/fixtures/burgers/veggie-burger.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "2.40",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:07:00",
+      "for_vegan": true,
+      "slug": "veggie-burger",
+      "category": 1
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 4,
+    "fields": {
+      "name": "Greek salad",
+      "description": "Laallala greek salad so tasty you need to pay it",
+      "image": "dishes/fixtures/salads/greek-salad.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "1.00",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:10:00",
+      "for_vegan": false,
+      "slug": "greek-salad",
+      "category": 2
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 5,
+    "fields": {
+      "name": "Chicken family",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/salads/chicken-family.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "3.00",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:15:00",
+      "for_vegan": false,
+      "slug": "chicken-family",
+      "category": 2
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 6,
+    "fields": {
+      "name": "Caesar salad",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/salads/caesar-salad.jpeg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "2.00",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:15:00",
+      "for_vegan": true,
+      "slug": "caesar-salad",
+      "category": 2
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 7,
+    "fields": {
+      "name": "Borsh",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/soups/borsh.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "1.40",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:30:00",
+      "for_vegan": false,
+      "slug": "borsh",
+      "category": 3
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 8,
+    "fields": {
+      "name": "Holodnik",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/soups/holodnik.jpeg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "0.80",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:40:00",
+      "for_vegan": false,
+      "slug": "holodnik",
+      "category": 3
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 9,
+    "fields": {
+      "name": "Schi",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/soups/schi.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "2.35",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:40:00",
+      "for_vegan": false,
+      "slug": "schi",
+      "category": 3
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 10,
+    "fields": {
+      "name": "Hawaii",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/pizza/hawaii.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "4.40",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:30:00",
+      "for_vegan": false,
+      "slug": "hawaii",
+      "category": 4
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 11,
+    "fields": {
+      "name": "Pepperoni",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/pizza/pepperoni.png",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "5.00",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:30:00",
+      "for_vegan": false,
+      "slug": "pepperoni",
+      "category": 4
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 12,
+    "fields": {
+      "name": "Summer veggie",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/pizza/summer-veggie.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "3.00",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:30:00",
+      "for_vegan": true,
+      "slug": "summer-veggie",
+      "category": 4
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 13,
+    "fields": {
+      "name": "Vegas pizza",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/pizza/vegas.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "2.20",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:30:00",
+      "for_vegan": true,
+      "slug": "vegas",
+      "category": 4
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 14,
+    "fields": {
+      "name": "Crabs",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/seafood/crabs.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "6.25",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:20:00",
+      "for_vegan": false,
+      "slug": "crabs",
+      "category": 5
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 15,
+    "fields": {
+      "name": "Fridge calmars",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/seafood/fridge-calmars.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "3.00",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:15:00",
+      "for_vegan": false,
+      "slug": "fridge-calmars",
+      "category": 5
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 16,
+    "fields": {
+      "name": "Oysters",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/seafood/oysters.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "4.30",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:05:00",
+      "for_vegan": false,
+      "slug": "oysters",
+      "category": 5
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 17,
+    "fields": {
+      "name": "Mega ocean set",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/seafood/seafood-megaset.jpeg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "20.99",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:30:00",
+      "for_vegan": false,
+      "slug": "seafood-megaset",
+      "category": 5
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 18,
+    "fields": {
+      "name": "Shrimps",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/seafood/shrimps.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "4.55",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:20:00",
+      "for_vegan": false,
+      "slug": "shrimps",
+      "category": 5
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 19,
+    "fields": {
+      "name": "Alya de beacon",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/appetizers/alya-de-beacon.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "3.99",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:10:00",
+      "for_vegan": false,
+      "slug": "alya-de-beacon",
+      "category": 6
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 20,
+    "fields": {
+      "name": "Assorti",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/appetizers/assorti.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "4.99",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:18:00",
+      "for_vegan": false,
+      "slug": "assorti",
+      "category": 6
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 21,
+    "fields": {
+      "name": "Buffalo chicken roll",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/appetizers/buffalo-chicken-roll.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "3.40",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:20:00",
+      "for_vegan": false,
+      "slug": "buffalo-chicken-roll",
+      "category": 6
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 22,
+    "fields": {
+      "name": "Mini trees",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/appetizers/mini-trees.png",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "4.10",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:25:00",
+      "for_vegan": false,
+      "slug": "mini-trees",
+      "category": 6
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 23,
+    "fields": {
+      "name": "Berry cake",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/deserts/berry-cake.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "1.99",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:10:00",
+      "for_vegan": true,
+      "slug": "berry-cake",
+      "category": 7
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 24,
+    "fields": {
+      "name": "Cheesecake",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/deserts/cheesecake.jpeg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "2.29",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:10:00",
+      "for_vegan": true,
+      "slug": "cheesecake",
+      "category": 7
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 25,
+    "fields": {
+      "name": "Icecream",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/deserts/icecream.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "0.69",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:03:00",
+      "for_vegan": true,
+      "slug": "icecream",
+      "category": 7
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 26,
+    "fields": {
+      "name": "Chocolate cake",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/deserts/chocolate-cake.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "1.29",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:07:00",
+      "for_vegan": true,
+      "slug": "chocolate-cake",
+      "category": 7
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 27,
+    "fields": {
+      "name": "Beer",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/drinks/beer.png",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "3.20",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:02:00",
+      "for_vegan": true,
+      "slug": "beer",
+      "category": 8
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 28,
+    "fields": {
+      "name": "Tea",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/drinks/tea.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "0.99",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:04:00",
+      "for_vegan": true,
+      "slug": "tea",
+      "category": 8
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 29,
+    "fields": {
+      "name": "Milkshake",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/drinks/milkshake.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "1.50",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:04:00",
+      "for_vegan": true,
+      "slug": "milkshake",
+      "category": 8
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 30,
+    "fields": {
+      "name": "Mineral water",
+      "description": "Lorem ipsum dolor sit amet.entium dolor!",
+      "image": "dishes/fixtures/drinks/mineral-water.jpg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "0.80",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:02:00",
+      "for_vegan": true,
+      "slug": "mineral-water",
+      "category": 8
+    }
+  },
+  {
+    "model": "dishes.dish",
+    "pk": 31,
+    "fields": {
+      "name": "Orange juice",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
+      "image": "dishes/fixtures/drinks/orange-juice.jpeg",
+      "height_field": 300,
+      "width_field": 420,
+      "price": "1.00",
+      "created_at": "2017-09-21T15:22:48.002Z",
+      "updated_at": "2017-09-21T15:22:48.002Z",
+      "preparing_time": "00:02:00",
+      "for_vegan": true,
+      "slug": "orange-juice",
+      "category": 8
+    }
+  }
+]

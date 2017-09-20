@@ -1,0 +1,66 @@
+[
+  {
+    "model": "dishes.category",
+    "pk": 1,
+    "fields": {
+      "name": "Burgers",
+      "slug": "burgers"
+    }
+  },
+  {
+    "model": "dishes.category",
+    "pk": 2,
+    "fields": {
+      "name": "Salads",
+      "slug": "salads"
+    }
+  },
+  {
+    "model": "dishes.category",
+    "pk": 3,
+    "fields": {
+      "name": "Soups",
+      "slug": "soups"
+    }
+  },
+  {
+    "model": "dishes.category",
+    "pk": 4,
+    "fields": {
+      "name": "Pizza",
+      "slug": "pizza"
+    }
+  },
+  {
+    "model": "dishes.category",
+    "pk": 5,
+    "fields": {
+      "name": "Seafood",
+      "slug": "seafood"
+    }
+  },
+  {
+    "model": "dishes.category",
+    "pk": 6,
+    "fields": {
+      "name": "Appetizers",
+      "slug": "appetizers"
+    }
+  },
+  {
+    "model": "dishes.category",
+    "pk": 7,
+    "fields": {
+      "name": "Deserts",
+      "slug": "deserts"
+    }
+  },
+  {
+    "model": "dishes.category",
+    "pk": 8,
+    "fields": {
+      "name": "Drinks",
+      "slug": "drinks"
+    }
+  }
+]
