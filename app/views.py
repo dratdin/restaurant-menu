@@ -1,4 +1,11 @@
 from django.shortcuts import render
+from dishes.models import *
 
 def index(request):
-    return render(request, 'app/index.html', locals())
+    dishes = Dish.objects.all()
+    categories = Category.objects.all()
+    context = {
+        'dishes': dishes,
+        'categories': categories,
+    }
+    return render(request, 'index.html', context)

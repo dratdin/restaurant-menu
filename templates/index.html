@@ -1,0 +1,62 @@
+{% load pipeline %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Food Menu | Healthy and tasty food!</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+  {% stylesheet 'style' %}
+</head>
+<body style>
+  <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">fooDMenu</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row no-gutters">
+      <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+        <ul class="nav nav-pills flex-column">
+          {% for category in categories %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">{{ category.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <main class="col-sm-9 ml-sm-auto col-md-10" role="main">
+
+        <section class="row text-center placeholders">
+          {% for dish in dishes %}
+          <div class="col-4 placeholder">
+            <div class="card">
+              <a href="/dishes/{{dish.alias}}">
+                <img class="card-img-top" src="{{dish.image.url}}" alt="{{dish.name}}">
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">{{ dish.name }}</h4>
+                <a href="" class="btn btn-primary">Add to cart</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  {% javascript 'app' %}
+  </body>
+</html>
