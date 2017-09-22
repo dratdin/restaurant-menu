@@ -10,6 +10,11 @@ def index(request, category_alias=None):
     else:
         category = Category.objects.filter(alias=category_alias)
         dishes = get_list_or_404(Dish, category=category)
+    sort = request.GET.get('sort')
+    if sort == 'asc':
+        dishes = dishes.order_by('name')
+    elif sort == 'desc':
+        dishes = dishes.order_by('name').reverse()
     paginator = Paginator(dishes, 6)
     page = request.GET.get('page')
     try:
@@ -21,6 +26,7 @@ def index(request, category_alias=None):
     context = {
         'dishes': dishes,
         'categories': categories,
+        'sort': sort
     }
     return render(request, 'index.html', context)
 

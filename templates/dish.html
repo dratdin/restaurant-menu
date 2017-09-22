@@ -13,6 +13,9 @@
     <p class="card-text"><small class="text-muted">Last updated {{ dish.updated_at }}</small></p>
     <p class="card-text"><small class="text-muted">Added {{ dish.created_at }}</small></p>
     <span class="badge badge-pill badge-primary">{{ dish.category.name }}</span>
+    {% if dish.for_vegan %}
+    <span class="badge badge-pill badge-success">For vegans!</span>
+    {% endif %}
   </div>
 </div>
 

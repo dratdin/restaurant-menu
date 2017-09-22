@@ -35,7 +35,11 @@
 
       <main class="col-sm-9 ml-sm-auto col-md-10" role="main">
       {% block content %} <!-- BLOCK CONTENT -->
-      <h1>Menu</h1>
+      <h1>Menu
+        <!-- asc desc reset current page -->
+        <a href="?page=1&sort=asc">Asc</a>
+        <a href="?page=1&sort=desc">Desc</a>
+      </h1>
       <div class="row text-center placeholders">
         {% for dish in dishes %}
         <div class="col-4 placeholder">
@@ -51,7 +55,7 @@
         </div>
         {% endfor %}
       </div>
-      {% include 'paginator.html' with page=dishes %}
+      {% include 'paginator.html' with page=dishes sort=sort %}
 
       {% endblock content %} <!-- ENDBLOCK CONTENT -->
       </main>
