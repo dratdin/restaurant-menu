@@ -1,20 +1,22 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from django.shortcuts import render, get_object_or_404, Http404
 from dishes.models import *
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request, category_alias=None):
     categories = Category.objects.all()
+    category = Category.objects.filter(alias=category_alias)
     if category_alias is None:
         dishes = Dish.objects.all()
     else:
-        category = Category.objects.filter(alias=category_alias)
-        dishes = get_list_or_404(Dish, category=category)
+        dishes = Dish.objects.filter(category=category)
+        if not dishes:
+            raise Http404("Category not found")
     sort = request.GET.get('sort')
     if sort == 'asc':
         dishes = dishes.order_by('name')
     elif sort == 'desc':
-        dishes = dishes.order_by('name').reverse()
+        dishes = dishes.order_by('-name')
     paginator = Paginator(dishes, 6)
     page = request.GET.get('page')
     try:
