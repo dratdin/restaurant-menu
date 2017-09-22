@@ -14,7 +14,7 @@
 <body style>
   <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">fooDMenu</a>
+      <a class="navbar-brand" href="/">fooDMenu</a>
       <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -23,34 +23,39 @@
 
   <div class="container">
     <div class="row no-gutters">
-      <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+      <nav class="col-2 d-none d-sm-block bg-light sidebar">
         <ul class="nav nav-pills flex-column">
           {% for category in categories %}
           <li class="nav-item">
-            <a class="nav-link" href="#">{{ category.name }}</a>
+            <a class="nav-link" href="{% url 'dishes:index' category.alias %}">{{ category.name }}</a>
           </li>
           {% endfor %}
         </ul>
       </nav>
 
       <main class="col-sm-9 ml-sm-auto col-md-10" role="main">
-
-        <section class="row text-center placeholders">
-          {% for dish in dishes %}
-          <div class="col-4 placeholder">
-            <div class="card">
-              <a href="/dishes/{{dish.alias}}">
-                <img class="card-img-top" src="{{dish.image.url}}" alt="{{dish.name}}">
-              </a>
-              <div class="card-body">
-                <h4 class="card-title">{{ dish.name }}</h4>
-                <a href="" class="btn btn-primary">Add to cart</a>
-              </div>
+      {% block content %} <!-- BLOCK CONTENT -->
+      <h1>Menu</h1>
+      <div class="row text-center placeholders">
+        {% for dish in dishes %}
+        <div class="col-4 placeholder">
+          <div class="card">
+            <a href="{{ dish.get_absolute_url }}">
+              <img class="card-img-top" src="{{ dish.image.url }}" alt="{{dish.name}}">
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">{{ dish.name }}</h4>
+              <a href="" class="btn btn-primary">Add to cart</a>
             </div>
           </div>
-          {% endfor %}
-        </section>
+        </div>
+        {% endfor %}
+      </div>
+      {% include 'paginator.html' with page=dishes %}
+
+      {% endblock content %} <!-- ENDBLOCK CONTENT -->
       </main>
+
     </div>
   </div>
 

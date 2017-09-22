@@ -17,8 +17,12 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
-from dishes import views
+from .views import (
+    detail,
+    index
+    )
 
 urlpatterns = [
-    url(r'^(?P<alias>[^/]+)', views.dish),
+    url(r'^category/(?P<category_alias>[^/]+)', index, name='index'),
+    url(r'^(?P<alias>[^/]+)', detail, name='detail')
 ]

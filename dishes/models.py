@@ -1,10 +1,9 @@
 from django.utils import timezone
 from django.db import models
 from django.core.files.storage import FileSystemStorage
+from django.core.urlresolvers import reverse
 
 class Category(models.Model):
-    """Implement category for dishes"""
-
     name = models.CharField(max_length=256, verbose_name='Name')
     alias = models.SlugField(verbose_name='Alias for category')
 
@@ -16,11 +15,9 @@ class Category(models.Model):
         return 'Category %s' % self.name
 
 def upload_location(instance, filename):
-    return "dishes/%s/%s" %(instance.id, filename)
+    return "dishes/%s" %(filename)
 
 class Dish(models.Model):
-    """Implement dishes"""
-
     name = models.CharField(max_length=128, verbose_name='Name')
     description = models.TextField()
     image = models.ImageField(
@@ -51,11 +48,17 @@ class Dish(models.Model):
         self.updated_at = timezone.now()
         return super(Dish, self).save(*args, **kwargs)
 
+    def delete(self, *args, **kwargs):
+        storage, path = self.image.storage, self.image.path
+        super(Dish, self).delete(*args, **kwargs)
+        storage.delete(path)
+
+    def get_absolute_url(self):
+        return reverse('dishes:detail', kwargs={"alias": self.alias})
+
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = 'Dish'
         verbose_name_plural = 'Dishes'
-
-    def __str__(self):
-        return 'Dish %s' % self.name
-
-
