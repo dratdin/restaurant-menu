@@ -14,14 +14,16 @@
 <ul>
   {% for item in cart %}
   <div class="card" style="width: 20rem;">
-    <img class="card-img-top" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+    <a href="{{ item.dish.get_absolute_url }}">
+      <img class="card-img-top" src="{{ item.dish.image.url }}" alt="{{ item.product.name }}">
+    </a>
     <div class="card-body">
       <h4 class="card-title">
-        {{ item.product.name }}
+        {{ item.dish.name }}
         <span class="badge badge-dark">x{{ item.quantity }}</span>
         <span class="badge badge-success">${{ item.total_price }}</span>
       </h4>
-      <a class="btn btn-danger" href="{% url 'carts:remove_from_cart' product_id=item.id %}">
+      <a class="btn btn-danger" href="{% url 'carts:remove_from_cart' dish_id=item.dish.id %}">
         Remove
       </a>
     </div>

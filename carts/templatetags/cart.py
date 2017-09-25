@@ -4,6 +4,5 @@ from carts.Cart import Cart
 register = template.Library()
 
 @register.simple_tag()
-def current_cart(request):
-    cart = Cart.current_cart(request)
-    return cart
+def get_current_cart(request):
+    return Cart.current_cart(request)

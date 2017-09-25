@@ -12,8 +12,8 @@ from .views import (
     )
 
 urlpatterns = [
-    url(r'^add/(?P<product_id>\d+)/(?P<quantity>\d+)', add_to_cart, name='add_to_cart'),
-    url(r'^remove/(?P<product_id>\d+)', remove_from_cart, name='remove_from_cart'),
+    url(r'^add/(?P<dish_id>\d+)/(?P<quantity>\d+)', add_to_cart, name='add_to_cart'),
+    url(r'^remove/(?P<dish_id>\d+)', remove_from_cart, name='remove_from_cart'),
     url(r'^detail/(?P<id>\d+)', cart_detail, name='detail'),
     url(r'^list/', cart_list, name='list'),
     url(r'^create/', cart_create, name='create'),

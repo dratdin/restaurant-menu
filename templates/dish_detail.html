@@ -20,7 +20,7 @@
     <p>
       PREPARING TIME: {{ dish.preparing_time }}
     </p>
-    <a href="{% url 'carts:add_to_cart' product_id=dish.id quantity=1 %}" class="btn btn-success">Add to cart</a>
+    <a href="{% url 'carts:add_to_cart' dish_id=dish.id quantity=1 %}" class="btn btn-success">Add to cart</a>
     <p class="card-text"><small class="text-muted">Last updated {{ dish.updated_at }}</small></p>
     <p class="card-text"><small class="text-muted">Added {{ dish.created_at }}</small></p>
   </div>

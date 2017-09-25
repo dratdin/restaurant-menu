@@ -19,11 +19,10 @@
       <a class="navbar-brand" href="/">fooDMenu</a>
       <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        {% current_cart request=request as current_cart %}
+        {% get_current_cart request=request as current_cart %}
         <a href="{{ current_cart.get_absolute_url }}">{{ current_cart.name }}</a>
       </li>
       <li class="nav-item">
-        {% current_cart request=request as current_cart %}
         <a href="{% url 'carts:list' %}">My carts</a>
       </li>
     </ul>
@@ -61,7 +60,7 @@
             </a>
             <div class="card-body">
               <h4 class="card-title">{{ dish.name }}</h4>
-              <a href="{% url 'carts:add_to_cart' product_id=dish.id quantity=1 %}" class="btn btn-primary">Add to cart</a>
+              <a href="{% url 'carts:add_to_cart' dish_id=dish.id quantity=1 %}" class="btn btn-primary">Add to cart</a>
             </div>
           </div>
         </div>

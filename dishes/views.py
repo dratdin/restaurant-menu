@@ -31,7 +31,7 @@ def dish_list(request, category_slug=None):
         'page_param_name': page_param_name,
         'dishes': dishes,
         'sort_param_name': sort_param_name,
-        'sort': sort
+        'sort': sort,
     }
     return render(request, 'index.html', context)
 
