@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Burgers",
-      "alias": "burgers"
+      "slug": "burgers"
     }
   },
   {
@@ -12,7 +12,7 @@
     "pk": 2,
     "fields": {
       "name": "Salads",
-      "alias": "salads"
+      "slug": "salads"
     }
   },
   {
@@ -20,7 +20,7 @@
     "pk": 3,
     "fields": {
       "name": "Soups",
-      "alias": "soups"
+      "slug": "soups"
     }
   },
   {
@@ -28,7 +28,7 @@
     "pk": 4,
     "fields": {
       "name": "Pizza",
-      "alias": "pizza"
+      "slug": "pizza"
     }
   },
   {
@@ -36,7 +36,7 @@
     "pk": 5,
     "fields": {
       "name": "Seafood",
-      "alias": "seafood"
+      "slug": "seafood"
     }
   },
   {
@@ -44,7 +44,7 @@
     "pk": 6,
     "fields": {
       "name": "Appetizers",
-      "alias": "appetizers"
+      "slug": "appetizers"
     }
   },
   {
@@ -52,7 +52,7 @@
     "pk": 7,
     "fields": {
       "name": "Deserts",
-      "alias": "deserts"
+      "slug": "deserts"
     }
   },
   {
@@ -60,7 +60,7 @@
     "pk": 8,
     "fields": {
       "name": "Drinks",
-      "alias": "drinks"
+      "slug": "drinks"
     }
   }
 ]

@@ -1,1 +1,0 @@
-[{"model": "dishes.dish", "pk": 1, "fields": {"name": "kakaka", "description": "kakaka", "image": "dishes/None/8.jpg", "height_field": 759, "width_field": 1600, "price": "1.40", "preparing_time": "00:05:00", "created_at": "2017-09-21T15:22:48.002Z", "updated_at": "2017-09-21T15:22:48.002Z", "for_vegan": true, "alias": "kakaka", "category": 1}}]

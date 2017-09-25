@@ -13,7 +13,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:09:00",
       "for_vegan": false,
-      "alias": "hamburger",
+      "slug": "hamburger",
       "category": 1
     }
   },
@@ -31,7 +31,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:12:00",
       "for_vegan": false,
-      "alias": "big-tasty",
+      "slug": "big-tasty",
       "category": 1
     }
   },
@@ -49,7 +49,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:07:00",
       "for_vegan": true,
-      "alias": "veggie-burger",
+      "slug": "veggie-burger",
       "category": 1
     }
   },
@@ -67,7 +67,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:10:00",
       "for_vegan": false,
-      "alias": "greek-salad",
+      "slug": "greek-salad",
       "category": 2
     }
   },
@@ -85,7 +85,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:15:00",
       "for_vegan": false,
-      "alias": "chicken-family",
+      "slug": "chicken-family",
       "category": 2
     }
   },
@@ -103,7 +103,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:15:00",
       "for_vegan": true,
-      "alias": "caesar-salad",
+      "slug": "caesar-salad",
       "category": 2
     }
   },
@@ -121,7 +121,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:30:00",
       "for_vegan": false,
-      "alias": "borsh",
+      "slug": "borsh",
       "category": 3
     }
   },
@@ -139,7 +139,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:40:00",
       "for_vegan": false,
-      "alias": "holodnik",
+      "slug": "holodnik",
       "category": 3
     }
   },
@@ -157,7 +157,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:40:00",
       "for_vegan": false,
-      "alias": "schi",
+      "slug": "schi",
       "category": 3
     }
   },
@@ -175,7 +175,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:30:00",
       "for_vegan": false,
-      "alias": "hawaii",
+      "slug": "hawaii",
       "category": 4
     }
   },
@@ -193,7 +193,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:30:00",
       "for_vegan": false,
-      "alias": "pepperoni",
+      "slug": "pepperoni",
       "category": 4
     }
   },
@@ -211,7 +211,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:30:00",
       "for_vegan": true,
-      "alias": "summer-veggie",
+      "slug": "summer-veggie",
       "category": 4
     }
   },
@@ -229,7 +229,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:30:00",
       "for_vegan": true,
-      "alias": "vegas",
+      "slug": "vegas",
       "category": 4
     }
   },
@@ -247,7 +247,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:20:00",
       "for_vegan": false,
-      "alias": "crabs",
+      "slug": "crabs",
       "category": 5
     }
   },
@@ -265,7 +265,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:15:00",
       "for_vegan": false,
-      "alias": "fridge-calmars",
+      "slug": "fridge-calmars",
       "category": 5
     }
   },
@@ -283,7 +283,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:05:00",
       "for_vegan": false,
-      "alias": "oysters",
+      "slug": "oysters",
       "category": 5
     }
   },
@@ -301,7 +301,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:30:00",
       "for_vegan": false,
-      "alias": "seafood-megaset",
+      "slug": "seafood-megaset",
       "category": 5
     }
   },
@@ -319,7 +319,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:20:00",
       "for_vegan": false,
-      "alias": "shrimps",
+      "slug": "shrimps",
       "category": 5
     }
   },
@@ -337,7 +337,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:10:00",
       "for_vegan": false,
-      "alias": "alya-de-beacon",
+      "slug": "alya-de-beacon",
       "category": 6
     }
   },
@@ -355,7 +355,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:18:00",
       "for_vegan": false,
-      "alias": "assorti",
+      "slug": "assorti",
       "category": 6
     }
   },
@@ -373,7 +373,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:20:00",
       "for_vegan": false,
-      "alias": "buffalo-chicken-roll",
+      "slug": "buffalo-chicken-roll",
       "category": 6
     }
   },
@@ -391,7 +391,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:25:00",
       "for_vegan": false,
-      "alias": "mini-trees",
+      "slug": "mini-trees",
       "category": 6
     }
   },
@@ -409,7 +409,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:10:00",
       "for_vegan": true,
-      "alias": "berry-cake",
+      "slug": "berry-cake",
       "category": 7
     }
   },
@@ -427,7 +427,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:10:00",
       "for_vegan": true,
-      "alias": "cheesecake",
+      "slug": "cheesecake",
       "category": 7
     }
   },
@@ -445,7 +445,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:03:00",
       "for_vegan": true,
-      "alias": "icecream",
+      "slug": "icecream",
       "category": 7
     }
   },
@@ -463,7 +463,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:07:00",
       "for_vegan": true,
-      "alias": "chocolate-cake",
+      "slug": "chocolate-cake",
       "category": 7
     }
   },
@@ -481,7 +481,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:02:00",
       "for_vegan": true,
-      "alias": "beer",
+      "slug": "beer",
       "category": 8
     }
   },
@@ -499,7 +499,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:04:00",
       "for_vegan": true,
-      "alias": "tea",
+      "slug": "tea",
       "category": 8
     }
   },
@@ -517,7 +517,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:04:00",
       "for_vegan": true,
-      "alias": "milkshake",
+      "slug": "milkshake",
       "category": 8
     }
   },
@@ -535,7 +535,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:02:00",
       "for_vegan": true,
-      "alias": "mineral-water",
+      "slug": "mineral-water",
       "category": 8
     }
   },
@@ -553,7 +553,7 @@
       "updated_at": "2017-09-21T15:22:48.002Z",
       "preparing_time": "00:02:00",
       "for_vegan": true,
-      "alias": "orange-juice",
+      "slug": "orange-juice",
       "category": 8
     }
   }

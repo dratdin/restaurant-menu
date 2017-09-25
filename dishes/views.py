@@ -1,24 +1,26 @@
 from django.shortcuts import render, get_object_or_404, Http404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from dishes.models import *
 
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from functools import wraps
 
-def index(request, category_alias=None):
-    categories = Category.objects.all()
-    category = Category.objects.filter(alias=category_alias)
-    if category_alias is None:
+def dish_list(request, category_slug=None):
+    category = Category.objects.filter(slug=category_slug)
+    if category_slug is None:
         dishes = Dish.objects.all()
     else:
         dishes = Dish.objects.filter(category=category)
         if not dishes:
             raise Http404("Category not found")
-    sort = request.GET.get('sort')
+    sort_param_name = 'sort'
+    sort = request.GET.get(sort_param_name)
     if sort == 'asc':
         dishes = dishes.order_by('name')
     elif sort == 'desc':
         dishes = dishes.order_by('-name')
     paginator = Paginator(dishes, 6)
-    page = request.GET.get('page')
+    page_param_name = 'page'
+    page = request.GET.get(page_param_name)
     try:
         dishes = paginator.page(page)
     except PageNotAnInteger:
@@ -26,17 +28,16 @@ def index(request, category_alias=None):
     except EmptyPage:
         dishes = paginator.page(paginator.num_pages)
     context = {
+        'page_param_name': page_param_name,
         'dishes': dishes,
-        'categories': categories,
+        'sort_param_name': sort_param_name,
         'sort': sort
     }
     return render(request, 'index.html', context)
 
-def detail(request, alias=None):
-    dish = get_object_or_404(Dish, alias=alias)
-    categories = Category.objects.all()
+def dish_detail(request, slug=None):
+    dish = get_object_or_404(Dish, slug=slug)
     context = {
         'dish': dish,
-        'categories': categories,
     }
-    return render(request, 'dish.html', context)
+    return render(request, 'dish_detail.html', context)

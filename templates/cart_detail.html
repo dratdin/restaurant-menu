@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<h1>
+  {{ cart.name }}
+  {% if cart.id == current_cart.id %}
+  (current cart)
+  {% else %}
+  <a href="{% url 'carts:set_current' id=cart.id %}" class="btn btn-success">Set as current</a>
+  {% endif %}
+</h1>
+
+<ul>
+  {% for item in cart %}
+  <div class="card" style="width: 20rem;">
+    <img class="card-img-top" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+    <div class="card-body">
+      <h4 class="card-title">
+        {{ item.product.name }}
+        <span class="badge badge-dark">x{{ item.quantity }}</span>
+        <span class="badge badge-success">${{ item.total_price }}</span>
+      </h4>
+      <a class="btn btn-danger" href="{% url 'carts:remove_from_cart' product_id=item.id %}">
+        Remove
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</ul>
+
+{% endblock content %}
