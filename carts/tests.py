@@ -3,8 +3,10 @@ from django.test import Client
 
 from carts.Cart import *
 from carts.models import Cart as CartModel
+from carts.forms import CartForm
 from dishes.models import Dish as DishModel
 from dishes.models import Category as CategoryDish
+from dishes.tests import create_drink_category, create_apple_juice, create_orange_juice
 
 class CartTestCase(TestCase):
     def setUp(self):
@@ -15,24 +17,9 @@ class CartTestCase(TestCase):
             description="Lala",
             session_key=self.session.session_key
         )
-        drink_category = CategoryDish.objects.create(
-            name="Drinks",
-            slug="drinks"
-        )
-        DishModel.objects.create(
-            name="Apple juice",
-            description="...",
-            price=1.25,
-            slug="apple-juice",
-            category=drink_category
-        )
-        DishModel.objects.create(
-            name="Orange juice",
-            description="...",
-            price=2.00,
-            slug="apple-juice",
-            category=drink_category
-        )
+        drink_category = create_drink_category()
+        create_apple_juice(drink_category)
+        create_orange_juice(drink_category)
 
     def test_cart_creating(self):
         cart_m = CartModel.objects.get(name="Cart1")
@@ -95,7 +82,7 @@ class CartTestCase(TestCase):
         cart = Cart(CartModel.objects.get(name="Cart1"))
         cart.set_as_current(self.session)
         self.assertEqual(cart.id, self.session[CART_ID])
-        self.assertEqual(True, cart.is_current(self.session))
+        self.assertTrue(cart.is_current(self.session))
 
     def test_get_all_carts(self):
         carts = Cart.get_all_carts(self.session)
@@ -120,12 +107,12 @@ class CartTestCase(TestCase):
         # Case when session doesn't have cart_id
         current_cart = Cart.current_cart(self.session)
         self.assertIsInstance(current_cart, Cart)
-        self.assertEqual(True, current_cart.is_current(self.session))
+        self.assertTrue(current_cart.is_current(self.session))
         # Case when session has valid cart_id
         cart_model = CartModel.objects.get(name="Cart1")
         cart = Cart(cart_model)
         cart.set_as_current(self.session)
-        self.assertEqual(True, cart.is_current(self.session))
+        self.assertTrue(cart.is_current(self.session))
         current_cart = Cart.current_cart(self.session)
         self.assertEqual(cart.id, current_cart.id)
         cart_id = cart.id
@@ -134,3 +121,20 @@ class CartTestCase(TestCase):
         current_cart = Cart.current_cart(self.session)
         self.assertIsInstance(cart, Cart)
         self.assertNotEqual(cart_id, current_cart.id)
+
+    def test_create_new_cart_invalidform_view(self):
+        data = {
+            # Cart with this name already exist for this session
+            'name': 'Cart1',
+            'description': "Lala",
+        }
+        response = self.client.post("/carts/create/", data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_create_new_cart_validform_view(self):
+        data = {
+            'name': 'Cart2',
+            'description': "lala",
+        }
+        response = self.client.post("/carts/create/", data)
+        self.assertEqual(response.status_code, 302)

@@ -118,20 +118,16 @@ STATICFILES_FINDERS = (
 
 PIPELINE = {
     'STYLESHEETS': {
-        'style': {
-            'source_filenames': (
-              'sass/style.sass',
-            ),
-            'output_filename': 'css/style.css',
-        },
+        'source_filenames': (
+          'sass/style.sass',
+        ),
+        'output_filename': 'css/style.css',
     },
     'JAVASCRIPT': {
-        'app': {
-            'source_filenames': (
-              'js/app.js',
-            ),
-            'output_filename': 'js/app.js',
-        }
+        'source_filenames': (
+          'js/app.js',
+        ),
+        'output_filename': 'js/app.js',
     }
 }
 
