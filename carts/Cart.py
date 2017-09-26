@@ -1,6 +1,6 @@
 import datetime
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, Http404
+from django.shortcuts import get_object_or_404, get_list_or_404, Http404
 
 from . import models
 
@@ -19,7 +19,7 @@ class Cart:
     """
         Before usenig all methods of these class
         you need check session_key existance
-        except current_cart method
+        except current_cart method. It checks session_key by itself
     """
     def __init__(self, object=None, **kwargs):
         """
@@ -50,7 +50,7 @@ class Cart:
             yield item
 
     def new(self, session_key, name, description):
-        cart = models.Cart(session_key=session_key, name=name, description=description, creation_date=datetime.datetime.now())
+        cart = models.Cart(session_key=session_key, name=name, description=description)
         cart.save()
         return cart
 
@@ -139,18 +139,16 @@ class Cart:
 
     @property
     def description(self):
-        return self.description.name
+        return self.cart.description
 
     # STATIC METHODS
-
-    @staticmethod
-    def add_new_cart(session, name, description):
-        cart = Cart(session_key=session.session_key, name=name, description=description)
-        return cart
-
     @staticmethod
     def get_all_carts(session):
-        carts_model = models.Cart.objects.filter(session_key=session.session_key)
+        """
+            Return list of carts whick belong to session
+            Or raise Http404 if list is empty
+        """
+        carts_model = get_list_or_404(models.Cart, session_key=session.session_key)
         carts = []
         for cart_model in carts_model:
             carts.append(Cart(cart_model))

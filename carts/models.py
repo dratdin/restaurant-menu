@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
+from django.utils import timezone
 
 from dishes.models import Dish
 
@@ -9,16 +10,16 @@ class Cart(models.Model):
     name = models.CharField(max_length=128, verbose_name=_('Name'))
     description = models.TextField()
     session_key = models.CharField(max_length=256)
-    creation_date = models.DateTimeField(verbose_name=_('creation date'))
+    created_at = models.DateTimeField(auto_now_add=True)
     checked_out = models.BooleanField(default=False, verbose_name=_('checked out'))
 
     class Meta:
         verbose_name = _('cart')
         verbose_name_plural = _('carts')
-        ordering = ('-creation_date',)
+        ordering = ('-created_at',)
 
     def __unicode__(self):
-        return unicode(self.creation_date)
+        return unicode(self.created_at)
 
 class Item(models.Model):
     cart = models.ForeignKey(Cart, verbose_name=_('cart'), on_delete=models.CASCADE)

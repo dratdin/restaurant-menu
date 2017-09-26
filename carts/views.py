@@ -50,7 +50,7 @@ def cart_create(request):
         if form.is_valid():
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
-            Cart.add_new_cart(request.session, name=name, description=description)
+            Cart(request.session, name=name, description=description)
             return redirect('carts:list')
     else:
         form = CartForm()
