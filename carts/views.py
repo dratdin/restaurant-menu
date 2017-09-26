@@ -16,13 +16,13 @@ def enable_session_key(function):
 
 def add_to_cart(request, dish_id, quantity):
     dish = get_object_or_404(Dish, id=dish_id)
-    cart = Cart.current_cart(request)
+    cart = Cart.current_cart(request.session)
     cart.add(dish, dish.price, quantity)
     return redirect('index')
 
 def remove_from_cart(request, dish_id):
     dish = get_object_or_404(Dish, id=dish_id)
-    cart = Cart.current_cart(request)
+    cart = Cart.current_cart(request.session)
     cart.remove(dish)
     context = {
         'cart': cart,
@@ -31,13 +31,13 @@ def remove_from_cart(request, dish_id):
 
 @enable_session_key
 def cart_detail(request, id=None):
-    cart = Cart.get(request.session.session_key, id)
+    cart = Cart.get(request.session, id)
     context = { 'cart': cart }
     return render(request, 'cart_detail.html', context)
 
 @enable_session_key
 def cart_list(request):
-    carts = Cart.get_all_carts(request.session.session_key)
+    carts = Cart.get_all_carts(request.session)
     context = {
         'carts': carts,
     }
@@ -50,7 +50,7 @@ def cart_create(request):
         if form.is_valid():
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
-            Cart.add_new_cart(request.session.session_key, name=name, description=description)
+            Cart.add_new_cart(request.session, name=name, description=description)
             return redirect('carts:list')
     else:
         form = CartForm()
@@ -61,6 +61,6 @@ def cart_create(request):
 
 @enable_session_key
 def set_current_cart(request, id=None):
-    cart = Cart.get(request.session.session_key, id)
-    cart.set_as_current(request)
+    cart = Cart.get(request.session, id)
+    cart.set_as_current(request.session)
     return redirect('carts:list')

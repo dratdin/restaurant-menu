@@ -17,15 +17,19 @@ class ItemDoesNotExist(Exception):
 
 class Cart:
     """
-        **kargs
-            Expected arguments
-            object - object of models.Cart
-            name
-            description
-            session_key
+        Before usenig all methods of these class
+        you need check session_key existance
+        except current_cart method
     """
-    # +
     def __init__(self, object=None, **kwargs):
+        """
+            object - existing object of Cart model
+            **kargs
+                Expected arguments
+                name
+                description
+                session_key
+        """
         if object is not None:
             cart = object
         else:
@@ -114,11 +118,11 @@ class Cart:
     def get_absolute_url(self):
         return reverse('carts:detail', kwargs={"id": self.id})
 
-    def set_as_current(self, request):
-        request.session[CART_ID] = self.id
+    def set_as_current(self, session):
+        session[CART_ID] = self.id
 
-    def is_current(self, request):
-        return self.id == request.session[CART_ID]
+    def is_current(self, session):
+        return self.id == session[CART_ID]
 
     # PROPERTIES
     @property
@@ -140,40 +144,42 @@ class Cart:
     # STATIC METHODS
 
     @staticmethod
-    def add_new_cart(session_key, name, description):
-        cart = Cart(session_key=session_key, name=name, description=description)
+    def add_new_cart(session, name, description):
+        cart = Cart(session_key=session.session_key, name=name, description=description)
         return cart
 
     @staticmethod
-    def get_all_carts(session_key):
-        carts_model = models.Cart.objects.filter(session_key=session_key)
+    def get_all_carts(session):
+        carts_model = models.Cart.objects.filter(session_key=session.session_key)
         carts = []
         for cart_model in carts_model:
             carts.append(Cart(cart_model))
         return carts
 
     @staticmethod
-    def get(session_key, id):
+    def get(session, id):
         cart_model = get_object_or_404(models.Cart, id=id, checked_out=False)
-        if session_key == cart_model.session_key:
+        if session.session_key == cart_model.session_key:
             return Cart(cart_model)
         else:
             raise Http404("It isn't your cart!")
 
     @staticmethod
-    def current_cart(request):
-        if not request.session.session_key:
-            request.session.save()
-        session_key = request.session.session_key
-        cart_id = request.session.get(CART_ID)
+    def current_cart(session):
+        """
+            This is the only method which check the existence of session key
+        """
+        if not session.session_key:
+            session.save()
+        cart_id = session.get(CART_ID)
         if cart_id:
             try:
                 cart_model = models.Cart.objects.get(id=cart_id, checked_out=False)
                 cart = Cart(cart_model)
             except models.Cart.DoesNotExist:
-                cart = Cart(session_key=session_key)
-                cart.set_as_current(request)
+                cart = Cart(session_key=session.session_key)
+                cart.set_as_current(session)
         else:
-            cart = Cart(session_key=session_key)
-            cart.set_as_current(request)
+            cart = Cart(session_key=session.session_key)
+            cart.set_as_current(session)
         return cart

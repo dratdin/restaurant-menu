@@ -19,7 +19,7 @@
       <a class="navbar-brand" href="/">fooDMenu</a>
       <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        {% get_current_cart request=request as current_cart %}
+        {% get_current_cart session=request.session as current_cart %}
         <a href="{{ current_cart.get_absolute_url }}">{{ current_cart.name }}</a>
       </li>
       <li class="nav-item">
