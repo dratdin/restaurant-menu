@@ -10,10 +10,13 @@
   <a href="{% url 'carts:set_current' id=cart.id %}" class="btn btn-success">Set as current</a>
   {% endif %}
 </h1>
+<div>
+  <a href="{% url 'carts:list' %}">My carts</a>
+</div>
 
 <ul>
   {% for item in cart %}
-  <div class="card" style="width: 20rem;">
+  <div class="card cart-product" style="width: 20rem;">
     <a href="{{ item.dish.get_absolute_url }}">
       <img class="card-img-top" src="{{ item.dish.image.url }}" alt="{{ item.product.name }}">
     </a>
@@ -23,9 +26,9 @@
         <span class="badge badge-dark">x{{ item.quantity }}</span>
         <span class="badge badge-success">${{ item.total_price }}</span>
       </h4>
-      <a class="btn btn-danger" href="{% url 'carts:remove_from_cart' dish_id=item.dish.id %}">
+      <button class="btn btn-danger cart-remove" data-url="{% url 'carts:remove_from_cart' cart_id=cart.id dish_id=item.dish.id %}">
         Remove
-      </a>
+      </button>
     </div>
   </div>
   {% endfor %}

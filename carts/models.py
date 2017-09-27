@@ -11,6 +11,7 @@ class Cart(models.Model):
     description = models.TextField()
     session_key = models.CharField(max_length=256)
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     checked_out = models.BooleanField(default=False, verbose_name=_('checked out'))
 
     class Meta:

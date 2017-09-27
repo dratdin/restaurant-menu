@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, Http404
+from django.http import JsonResponse
 
 from dishes.models import Dish
 from carts.Cart import *
@@ -15,19 +16,26 @@ def enable_session_key(function):
     return wrapper
 
 def add_to_cart(request, dish_id, quantity):
+    """ Add product to current cart"""
     dish = get_object_or_404(Dish, id=dish_id)
     cart = Cart.current_cart(request.session)
     cart.add(dish, dish.price, quantity)
-    return redirect('index')
-
-def remove_from_cart(request, dish_id):
-    dish = get_object_or_404(Dish, id=dish_id)
-    cart = Cart.current_cart(request.session)
-    cart.remove(dish)
-    context = {
-        'cart': cart,
+    data = {
+        'current_cart_size': cart.count()
     }
-    return render(request, 'cart_detail.html', context)
+    return JsonResponse(data)
+
+def remove_from_cart(request, cart_id, dish_id):
+    dish = get_object_or_404(Dish, id=dish_id)
+    cart = Cart.get(request.session, cart_id)
+    cart.remove(dish)
+    if cart.is_current(request.session):
+        data = {
+            'current_cart_size': cart.count()
+        }
+    else:
+        data = {}
+    return JsonResponse(data)
 
 @enable_session_key
 def cart_detail(request, id=None):

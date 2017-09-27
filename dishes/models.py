@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=256, verbose_name='Name')
-    slug = models.SlugField(verbose_name='Slug for category')
+    slug = models.SlugField(unique=True, verbose_name='Slug for category')
 
     def get_absolute_url(self):
         return reverse('dishes:list', kwargs={"category_slug": self.slug})
@@ -38,7 +38,7 @@ class Dish(models.Model):
     created_at = models.DateTimeField(editable=False)
     updated_at = models.DateTimeField(editable=False)
     for_vegan = models.BooleanField(default=False)
-    slug = models.SlugField(verbose_name='Slug for dish')
+    slug = models.SlugField(unique=True, verbose_name='Slug for dish')
     category = models.ForeignKey(Category)
 
     def save(self, *args, **kwargs):
