@@ -57,13 +57,18 @@ class Cart:
         cart.save()
         return cart
 
+    def update(self, name, description):
+        self.cart.name = name
+        self.cart.description = description
+        self.cart.save()
+
     def delete(self, session):
         if self.is_current(session):
             raise CurrentCartCantBeDeleted
         else:
             self.cart.delete()
 
-    def add(self, dish, unit_price, quantity=1):
+    def add_item(self, dish, unit_price, quantity=1):
         try:
             item = models.Item.objects.get(
                 cart=self.cart,
@@ -81,7 +86,7 @@ class Cart:
             item.quantity += int(quantity)
             item.save()
 
-    def remove(self, dish):
+    def remove_item(self, dish):
         try:
             item = models.Item.objects.get(
                 cart=self.cart,
@@ -92,7 +97,7 @@ class Cart:
         else:
             item.delete()
 
-    def update(self, dish, quantity, unit_price=None):
+    def update_item(self, dish, quantity, unit_price=None):
         try:
             item = models.Item.objects.get(
                 cart=self.cart,

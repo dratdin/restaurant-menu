@@ -15,11 +15,15 @@ class Cart(models.Model):
     checked_out = models.BooleanField(default=False, verbose_name=_('checked out'))
 
     def clean(self):
-        if Cart.objects.filter(name=self.name, session_key=self.session_key).exists():
-            raise ValidationError(
-                'You already have %(name)s cart, you need to choose another name',
-                params={'name': self.name}
-            )
+        try:
+            cart = Cart.objects.get(name=self.name, session_key=self.session_key)
+            if int(cart.id) != int(self.id):
+                raise ValidationError(
+                    'You already have %(name)s cart, you need to choose another name',
+                    params={'name': name},
+                )
+        except Cart.DoesNotExist:
+            pass
 
     def save(self, *args, **kwargs):
         self.full_clean()

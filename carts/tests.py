@@ -3,7 +3,7 @@ from django.test import Client
 
 from carts.Cart import *
 from carts.models import Cart as CartModel
-from carts.forms import CartForm
+from carts.forms import CartFormCreate
 from dishes.models import Dish as DishModel
 from dishes.models import Category as CategoryDish
 from dishes.tests import create_drink_category, create_apple_juice, create_orange_juice
@@ -28,6 +28,13 @@ class CartTestCase(TestCase):
         self.assertIsInstance(Cart(session_key=cart_m.session_key), Cart)
         self.assertIsInstance(Cart(session_key=cart_m.session_key, name='For children', description='lallala'), Cart)
 
+    def test_cart_update(self):
+        cart = Cart.current_cart(self.session)
+        name, description = cart.name, cart.description
+        cart.update("CartUpdateName", "CartUpdateDescription")
+        self.assertNotEqual(name, cart.name)
+        self.assertNotEqual(description, cart.description)
+
     def test_cart_deleting(self):
         current_cart = Cart.current_cart(self.session)
         cart = Cart.add_new_cart(self.session, 'Cartka', 'dasdasdas')
@@ -41,27 +48,27 @@ class CartTestCase(TestCase):
     def test_add_to_cart(self):
         cart = Cart(CartModel.objects.get(name="Cart1"))
         dish = DishModel.objects.get(name="Apple juice")
-        cart.add(dish, dish.price, 1)
+        cart.add_item(dish, dish.price, 1)
         self.assertEqual(cart.count(), 1)
-        cart.add(dish, dish.price, 2)
+        cart.add_item(dish, dish.price, 2)
         self.assertEqual(cart.count(), 3)
 
     def test_remove_from_cart(self):
         cart = Cart(CartModel.objects.get(name="Cart1"))
         dish = DishModel.objects.get(name="Apple juice")
-        cart.add(dish, dish.price, 2)
-        cart.remove(dish)
+        cart.add_item(dish, dish.price, 2)
+        cart.remove_item(dish)
         self.assertEqual(cart.count(), 0)
         with self.assertRaises(ItemDoesNotExist):
-            cart.remove(dish)
+            cart.remove_item(dish)
 
     def test_update_dish_in_cart(self):
         cart = Cart(CartModel.objects.get(name="Cart1"))
         dish = DishModel.objects.get(name="Apple juice")
         with self.assertRaises(ItemDoesNotExist):
-            cart.update(dish, 2, dish.price)
-        cart.add(dish, dish.price, 4)
-        cart.update(dish, 2, dish.price)
+            cart.update_item(dish, 2, dish.price)
+        cart.add_item(dish, dish.price, 4)
+        cart.update_item(dish, 2, dish.price)
         self.assertEqual(cart.count(), 2)
 
     def test_cart_summary(self):
@@ -70,8 +77,8 @@ class CartTestCase(TestCase):
         orange_juice = DishModel.objects.get(name="Orange juice")
         apple_juice_count = 2
         orange_juice_count = 3
-        cart.add(apple_juice, apple_juice.price, apple_juice_count)
-        cart.add(orange_juice, orange_juice.price, orange_juice_count)
+        cart.add_item(apple_juice, apple_juice.price, apple_juice_count)
+        cart.add_item(orange_juice, orange_juice.price, orange_juice_count)
         self.assertEqual(
             cart.summary(),
             apple_juice_count*apple_juice.price + orange_juice_count*orange_juice.price
@@ -83,8 +90,8 @@ class CartTestCase(TestCase):
         orange_juice = DishModel.objects.get(name="Orange juice")
         apple_juice_count = 2
         orange_juice_count = 3
-        cart.add(apple_juice, apple_juice.price, apple_juice_count)
-        cart.add(orange_juice, orange_juice.price, orange_juice_count)
+        cart.add_item(apple_juice, apple_juice.price, apple_juice_count)
+        cart.add_item(orange_juice, orange_juice.price, orange_juice_count)
         cart.clear()
         self.assertEqual(cart.count(), 0)
 
@@ -133,7 +140,7 @@ class CartTestCase(TestCase):
         self.assertEqual(cart.id, current_cart.id)
         cart_id = cart.id
 
-    def test_create_new_cart_invalid_form_view(self):
+    def test_view_cart_create_invalid(self):
         data = {
             # Cart with this name already exist for this session
             'name': 'Cart1',
@@ -143,11 +150,40 @@ class CartTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    def test_create_new_cart_valid_form_view(self):
+    def test_view_cart_create_valid(self):
         data = {
             'name': 'Cart2',
             'description': "lala",
         }
         response = self.client.post("/carts/create/", data)
+        self.assertEqual(response.status_code, 302)
+        CartModel.objects.get(name=data['name'])
+
+    def test_view_cart_update_invalid(self):
+        cart1 = CartModel.objects.get(name="Cart1")
+        cart2 = CartModel.objects.create(
+            name="Cart2",
+            description="...",
+            session_key=self.session.session_key
+        )
+        data = {
+            # Cart with this name already exist for this session
+            'name': cart2.name,
+            'description': "Lala",
+        }
+        response = self.client.post("/carts/update/%d/" % cart1.id, data)
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_cart_update_valid(self):
+        cart = CartModel.objects.create(
+            name="Cart2",
+            description="...",
+            session_key=self.session.session_key
+        )
+        data = {
+            'name': "Cart 2 Updated!",
+            'description': "±...±",
+        }
+        response = self.client.post("/carts/update/%d/" % cart.id, data)
         self.assertEqual(response.status_code, 302)
         CartModel.objects.get(name=data['name'])

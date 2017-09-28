@@ -291,7 +291,7 @@
     "model": "dishes.dish",
     "pk": 17,
     "fields": {
-      "name": "Oysters",
+      "name": "Mega ocean set",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium optio itaque molestiae rem molestias officiis necessitatibus praesentium dolor, quidem ratione provident totam beatae soluta explicabo deserunt, accusantium sapiente, sed doloremque!",
       "image": "dishes/fixtures/seafood/seafood-megaset.jpeg",
       "height_field": 300,
