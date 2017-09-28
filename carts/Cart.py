@@ -15,6 +15,9 @@ class ItemAlreadyExists(Exception):
 class ItemDoesNotExist(Exception):
     pass
 
+class CurrentCartCantBeDeleted(Exception):
+    pass
+
 class Cart:
     """
         Before usenig all methods of these class
@@ -53,6 +56,12 @@ class Cart:
         cart = models.Cart(session_key=session_key, name=name, description=description)
         cart.save()
         return cart
+
+    def delete(self, session):
+        if self.is_current(session):
+            raise CurrentCartCantBeDeleted
+        else:
+            self.cart.delete()
 
     def add(self, dish, unit_price, quantity=1):
         try:

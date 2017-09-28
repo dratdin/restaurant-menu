@@ -15,36 +15,6 @@ def enable_session_key(function):
         return function(request, *args, **kwargs)
     return wrapper
 
-def add_to_cart(request, dish_id, quantity):
-    """ Add product to current cart"""
-    dish = get_object_or_404(Dish, id=dish_id)
-    cart = Cart.current_cart(request.session)
-    cart.add(dish, dish.price, quantity)
-    data = {
-        'current_cart_count': cart.count(),
-        'current_cart_sum': cart.summary()
-    }
-    return JsonResponse(data)
-
-def remove_from_cart(request, cart_id, dish_id):
-    dish = get_object_or_404(Dish, id=dish_id)
-    cart = Cart.get(request.session, cart_id)
-    cart.remove(dish)
-    if cart.is_current(request.session):
-        data = {
-            'current_cart_count': cart.count(),
-            'current_cart_sum': cart.summary()
-        }
-    else:
-        data = {}
-    return JsonResponse(data)
-
-@enable_session_key
-def cart_detail(request, id=None):
-    cart = Cart.get(request.session, id)
-    context = { 'cart': cart }
-    return render(request, 'detail.html', context)
-
 @enable_session_key
 def cart_list(request):
     carts = Cart.get_all_carts(request.session)
@@ -52,6 +22,12 @@ def cart_list(request):
         'carts': carts,
     }
     return render(request, 'carts.html', context)
+
+@enable_session_key
+def cart_detail(request, id):
+    cart = Cart.get(request.session, id)
+    context = { 'cart': cart }
+    return render(request, 'detail.html', context)
 
 @enable_session_key
 def cart_create(request):
@@ -70,7 +46,39 @@ def cart_create(request):
     return render(request, 'create.html', context)
 
 @enable_session_key
-def set_current_cart(request, id=None):
+def cart_delete(request, id):
+    cart = Cart.get(request.session, id)
+    cart.delete(request.session)
+    return redirect('carts:list')
+
+@enable_session_key
+def set_current_cart(request, id):
     cart = Cart.get(request.session, id)
     cart.set_as_current(request.session)
     return redirect('carts:list')
+
+@enable_session_key
+def add_to_cart(request, dish_id, quantity):
+    """ Add product to current cart"""
+    dish = get_object_or_404(Dish, id=dish_id)
+    cart = Cart.current_cart(request.session)
+    cart.add(dish, dish.price, quantity)
+    data = {
+        'current_cart_count': cart.count(),
+        'current_cart_sum': cart.summary()
+    }
+    return JsonResponse(data)
+
+@enable_session_key
+def remove_from_cart(request, cart_id, dish_id):
+    dish = get_object_or_404(Dish, id=dish_id)
+    cart = Cart.get(request.session, cart_id)
+    cart.remove(dish)
+    if cart.is_current(request.session):
+        data = {
+            'current_cart_count': cart.count(),
+            'current_cart_sum': cart.summary()
+        }
+    else:
+        data = {}
+    return JsonResponse(data)

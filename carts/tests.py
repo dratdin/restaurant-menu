@@ -28,6 +28,16 @@ class CartTestCase(TestCase):
         self.assertIsInstance(Cart(session_key=cart_m.session_key), Cart)
         self.assertIsInstance(Cart(session_key=cart_m.session_key, name='For children', description='lallala'), Cart)
 
+    def test_cart_deleting(self):
+        current_cart = Cart.current_cart(self.session)
+        cart = Cart.add_new_cart(self.session, 'Cartka', 'dasdasdas')
+        cart_id = cart.id
+        cart.delete(self.session)
+        with self.assertRaises(CartModel.DoesNotExist):
+            cart_m = CartModel.objects.get(id=cart_id)
+        with self.assertRaises(CurrentCartCantBeDeleted):
+            current_cart.delete(self.session)
+
     def test_add_to_cart(self):
         cart = Cart(CartModel.objects.get(name="Cart1"))
         dish = DishModel.objects.get(name="Apple juice")
@@ -123,7 +133,7 @@ class CartTestCase(TestCase):
         self.assertEqual(cart.id, current_cart.id)
         cart_id = cart.id
 
-    def test_create_new_cart_invalidform_view(self):
+    def test_create_new_cart_invalid_form_view(self):
         data = {
             # Cart with this name already exist for this session
             'name': 'Cart1',
@@ -133,7 +143,7 @@ class CartTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    def test_create_new_cart_validform_view(self):
+    def test_create_new_cart_valid_form_view(self):
         data = {
             'name': 'Cart2',
             'description': "lala",

@@ -5,28 +5,27 @@
 <h1>
   {{ cart.name }}
   {% if cart.id == current_cart.id %}
-  <span class="badge badge-info float-right">current</span>
+  <span class="badge badge-info">current</span>
   {% else %}
   <a href="{% url 'carts:set_current' id=cart.id %}" class="btn btn-success">Set as current</a>
   {% endif %}
 </h1>
 
-<table id="cart" class="table table-hover table-condensed">
+<table id="cart" class="table table-hover table-condensed border">
   <thead>
     <tr>
-      <th style="width:60%">Product</th>
-      <th style="width:9%">Price</th>
-      <th style="width:9%">Quantity</th>
-      <th style="width:9%" class="text-center">Subtotal</th>
-      <th style="width:13%"></th>
+      <th style="width:50%">Product</th>
+      <th style="width:10%">Price</th>
+      <th style="width:10%">Quantity</th>
+      <th style="width:15%" class="text-center">Subtotal</th>
+      <th style="width:15%"></th>
     </tr>
   </thead>
   <tbody>
     {% for item in cart %}
     <tr class="product">
       <td>
-          <h5 class="nomargin">{{ item.dish.name }}</h5>
-          <p>{{ item.dish.description|truncatechars:100 }}</p>
+        <h5 class="nomargin">{{ item.dish.name }}</h5>
       </td>
       <td data-th="Price">${{ item.unit_price }}</td>
       <td data-th="Quantity">{{ item.quantity }}</td>
