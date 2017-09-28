@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^add/(?P<dish_id>\d+)/(?P<quantity>\d+)', add_to_cart, name='add_to_cart'),
     url(r'^remove/(?P<cart_id>\d+)/(?P<dish_id>\d+)', remove_from_cart, name='remove_from_cart'),
     url(r'^detail/(?P<id>\d+)', cart_detail, name='detail'),
-    url(r'^list/', cart_list, name='list'),
+    url(r'^$', cart_list, name='list'),
     url(r'^create/', cart_create, name='create'),
     url(r'^set-current/(?P<id>\d+)', set_current_cart, name='set_current'),
 ]

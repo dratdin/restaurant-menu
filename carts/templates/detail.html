@@ -1,0 +1,49 @@
+{% extends 'carts.html' %}
+
+{% block content %}
+
+<h1>
+  {{ cart.name }}
+  {% if cart.id == current_cart.id %}
+  <span class="badge badge-info float-right">current</span>
+  {% else %}
+  <a href="{% url 'carts:set_current' id=cart.id %}" class="btn btn-success">Set as current</a>
+  {% endif %}
+</h1>
+
+<table id="cart" class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th style="width:60%">Product</th>
+      <th style="width:9%">Price</th>
+      <th style="width:9%">Quantity</th>
+      <th style="width:9%" class="text-center">Subtotal</th>
+      <th style="width:13%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in cart %}
+    <tr class="product">
+      <td>
+          <h5 class="nomargin">{{ item.dish.name }}</h5>
+          <p>{{ item.dish.description|truncatechars:100 }}</p>
+      </td>
+      <td data-th="Price">${{ item.unit_price }}</td>
+      <td data-th="Quantity">{{ item.quantity }}</td>
+      <td data-th="Subtotal" class="text-center">${{ item.total_price }}</td>
+      <td class="actions" data-th="">
+        <button data-url="{% url 'carts:remove_from_cart' cart_id=cart.id dish_id=item.dish.id %}" class="btn btn-danger btn-sm product-remove">Remove</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3" class="hidden-xs"></td>
+      <td class="hidden-xs text-center"><strong>Total $<span class="cart__sum">{{ cart.summary }}</span></strong></td>
+      <td colspan="1" class="hidden-xs"></td>
+    </tr>
+  </tfoot>
+</table>
+
+{% endblock content %}

@@ -4,7 +4,8 @@ $(function () {
     var url = $(this).attr("data-url");
     console.log(url);
     function success(data) {
-      $('.current-cart-count').html(data.current_cart_size);
+      $('.cart__count').html(data.current_cart_count);
+      $('.cart__sum').html(data.current_cart_sum);
     };
     function error() {
       alert('Error: item was not added!');
@@ -18,14 +19,17 @@ $(function () {
     });
   });
 
-  $('.cart-remove').click(function() {
+  $('.product-remove').click(function() {
     var button = $(this);
     var url = button.attr("data-url");
     console.log(url);
     function success(data) {
-      if(data.current_cart_size != null)
-        $('.current-cart-count').html(data.current_cart_size);
-      button.closest(".cart-product").remove();
+      // If item removing was from current cart
+      if(data.current_cart_count != null) {
+        $('.cart__count').html(data.current_cart_count);
+        $('.cart__sum').html(data.current_cart_sum);
+      }
+      button.closest(".product").remove();
     };
     function error() {
       alert('Error: item was not removed!');

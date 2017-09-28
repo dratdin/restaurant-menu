@@ -21,7 +21,8 @@ def add_to_cart(request, dish_id, quantity):
     cart = Cart.current_cart(request.session)
     cart.add(dish, dish.price, quantity)
     data = {
-        'current_cart_size': cart.count()
+        'current_cart_count': cart.count(),
+        'current_cart_sum': cart.summary()
     }
     return JsonResponse(data)
 
@@ -31,7 +32,8 @@ def remove_from_cart(request, cart_id, dish_id):
     cart.remove(dish)
     if cart.is_current(request.session):
         data = {
-            'current_cart_size': cart.count()
+            'current_cart_count': cart.count(),
+            'current_cart_sum': cart.summary()
         }
     else:
         data = {}
@@ -41,7 +43,7 @@ def remove_from_cart(request, cart_id, dish_id):
 def cart_detail(request, id=None):
     cart = Cart.get(request.session, id)
     context = { 'cart': cart }
-    return render(request, 'cart_detail.html', context)
+    return render(request, 'detail.html', context)
 
 @enable_session_key
 def cart_list(request):
@@ -49,7 +51,7 @@ def cart_list(request):
     context = {
         'carts': carts,
     }
-    return render(request, 'cart_list.html', context)
+    return render(request, 'carts.html', context)
 
 @enable_session_key
 def cart_create(request):
@@ -58,14 +60,14 @@ def cart_create(request):
         if form.is_valid():
             name = form.cleaned_data['name']
             description = form.cleaned_data['description']
-            Cart(request.session, name=name, description=description)
+            Cart.add_new_cart(request.session, name, description)
             return redirect('carts:list')
     else:
         form = CartForm()
     context = {
         'form': form,
     }
-    return render(request, 'cart_create.html', context)
+    return render(request, 'create.html', context)
 
 @enable_session_key
 def set_current_cart(request, id=None):

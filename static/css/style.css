@@ -7,3 +7,37 @@
 main {
   padding-top: 20px;
   padding-left: 20px !important; }
+
+button {
+  cursor: pointer;
+}
+
+.Cart,
+.Cart:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.cart__info,
+.cart__img {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.cart__img {margin-right: 10px;}
+
+.cart__Count {
+  font-size: 14px;
+}
+
+.product {
+  margin-bottom: 25px;
+}
+
+.product__img {
+  height: 160px;
+  width: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  border-bottom: 1px solid #eee;
+}

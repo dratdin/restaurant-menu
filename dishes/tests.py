@@ -22,7 +22,7 @@ def create_orange_juice(category):
         name="Orange juice",
         description="...",
         price=2.00,
-        slug="apple-juice",
+        slug="orange-juice",
         category=category
     )
 

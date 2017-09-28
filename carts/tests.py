@@ -108,6 +108,12 @@ class CartTestCase(TestCase):
         current_cart = Cart.current_cart(self.session)
         self.assertIsInstance(current_cart, Cart)
         self.assertTrue(current_cart.is_current(self.session))
+        # Case when session has legasy cart_id
+        old_id = current_cart.id
+        current_cart.cart.delete()
+        current_cart = Cart.current_cart(self.session)
+        self.assertIsInstance(current_cart, Cart)
+        self.assertNotEqual(old_id, current_cart.id)
         # Case when session has valid cart_id
         cart_model = CartModel.objects.get(name="Cart1")
         cart = Cart(cart_model)
@@ -116,11 +122,6 @@ class CartTestCase(TestCase):
         current_cart = Cart.current_cart(self.session)
         self.assertEqual(cart.id, current_cart.id)
         cart_id = cart.id
-        # Case when session has legasy cart_id
-        cart_model.delete()
-        current_cart = Cart.current_cart(self.session)
-        self.assertIsInstance(cart, Cart)
-        self.assertNotEqual(cart_id, current_cart.id)
 
     def test_create_new_cart_invalidform_view(self):
         data = {
@@ -131,6 +132,7 @@ class CartTestCase(TestCase):
         response = self.client.post("/carts/create/", data)
         self.assertEqual(response.status_code, 200)
 
+
     def test_create_new_cart_validform_view(self):
         data = {
             'name': 'Cart2',
@@ -138,3 +140,4 @@ class CartTestCase(TestCase):
         }
         response = self.client.post("/carts/create/", data)
         self.assertEqual(response.status_code, 302)
+        CartModel.objects.get(name=data['name'])

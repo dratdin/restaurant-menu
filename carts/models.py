@@ -14,6 +14,17 @@ class Cart(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     checked_out = models.BooleanField(default=False, verbose_name=_('checked out'))
 
+    def clean(self):
+        if Cart.objects.filter(name=self.name, session_key=self.session_key).exists():
+            raise ValidationError(
+                'You already have %(name)s cart, you need to choose another name',
+                params={'name': self.name}
+            )
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super(Cart, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = _('cart')
         verbose_name_plural = _('carts')

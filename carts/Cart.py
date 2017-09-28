@@ -163,6 +163,10 @@ class Cart:
             raise Http404("It isn't your cart!")
 
     @staticmethod
+    def add_new_cart(session, name, description):
+        return Cart(session_key=session.session_key, name=name, description=description)
+
+    @staticmethod
     def current_cart(session):
         """
             This is the only method which check the existence of session key
