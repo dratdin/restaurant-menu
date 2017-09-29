@@ -37,7 +37,7 @@
 
   <div class="container">
     <div class="row no-gutters">
-      <nav class="col-2 d-none d-sm-block bg-light sidebar">
+      <nav class="col-2 d-none d-sm-block bg-light sidebar pt-2">
         <ul class="nav nav-pills flex-column">
           {% get_categories as categories %}
           {% for category in categories %}
@@ -59,7 +59,7 @@
       </h1>
       <div class="row text-center placeholders">
         {% for dish in dishes %}
-        <div class="product col-4 placeholder">
+        <div class="product col-4 placeholder mb-4">
           <div class="card">
             <a href="{{ dish.get_absolute_url }}">
               <div class="product__img" style="background-image: url('{{ dish.image.url }}')"></div>

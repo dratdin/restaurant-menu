@@ -2,27 +2,34 @@
 
 {% block content %}
 
-<div class="card mb-3">
-  <img src="{{dish.image.url}}" alt="{{dish.name}}">
-  <div class="card-body">
+<div class="media">
+  <div class="mr-3">
+    <div class="product__cover" style="background-image: url('{{dish.image.url}}')" alt="{{dish.name}}"></div>
+    <div>
+      {% if dish.for_vegan %}
+      <div class="badge badge-pill badge-success">For vegans!</div>
+      {% endif %}
+      <div class="badge badge-pill badge-primary">{{ dish.category.name }}</div>
+    </div>
+  </div>
+  <div class="media-body">
     <h1 class="card-title">
       {{ dish.name }}
-      <span class="badge badge-info">${{ dish.price }}</span>
+      <span class="badge badge-warning">${{ dish.price }}</span>
     </h1>
     <p class="card-text">
-      {% if dish.for_vegan %}
-      <span class="badge badge-pill badge-success">For vegans!</span>
-      {% endif %}
-      <span class="badge badge-pill badge-primary">{{ dish.category.name }}</span>
-      <br />
       {{ dish.description }}
     </p>
     <p>
       PREPARING TIME: {{ dish.preparing_time }}
     </p>
     <button data-url="{% url 'carts:add_to_cart' dish_id=dish.id quantity=1 %}" class="btn btn-primary cart-add">Add to cart</button>
-    <p class="card-text"><small class="text-muted">Last updated {{ dish.updated_at }}</small></p>
-    <p class="card-text"><small class="text-muted">Added {{ dish.created_at }}</small></p>
+    <div>
+      <small class="text-muted">Last updated {{ dish.updated_at }}</small>
+    </div>
+    <div>
+      <small class="text-muted">Added {{ dish.created_at }}</small>
+    </div>
   </div>
 </div>
 

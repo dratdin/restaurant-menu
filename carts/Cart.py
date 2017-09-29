@@ -171,6 +171,9 @@ class Cart:
     @staticmethod
     def get(session, id):
         cart_model = get_object_or_404(models.Cart, id=id, checked_out=False)
+        print(session.session_key)
+        print('±±±±±±±±±±±±±±±±')
+        print(cart_model.session_key)
         if session.session_key == cart_model.session_key:
             return Cart(cart_model)
         else:

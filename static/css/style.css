@@ -1,9 +1,6 @@
 .nav-pills .nav-link {
   border-radius: 0; }
 
-.sidebar {
-  padding-top: 20px; }
-
 main {
   padding-top: 20px;
   padding-left: 20px !important; }
@@ -30,13 +27,17 @@ button {
   font-size: 14px;
 }
 
-.product {
-  margin-bottom: 25px;
-}
-
 .product__img {
   height: 160px;
   width: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  border-bottom: 1px solid #eee;
+}
+
+.product__cover {
+  height: 200px;
+  width: 270px;
   background-size: cover;
   background-position: 50% 50%;
   border-bottom: 1px solid #eee;
