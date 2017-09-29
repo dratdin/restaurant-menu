@@ -6,19 +6,20 @@ from carts.models import Cart as CartModel
 from carts.forms import CartFormCreate
 from dishes.models import Dish as DishModel
 from dishes.models import Category as CategoryDish
-from dishes.tests import create_drink_category, create_apple_juice, create_orange_juice
+from dishes.tests import create_drink_category, create_beer, create_orange_juice
 
 class CartTestCase(TestCase):
     def setUp(self):
+        self.client = Client()
         self.session = self.client.session
         self.session.save()
-        CartModel.objects.create(
+        self.cart_model = CartModel.objects.create(
             name="Cart1",
             description="Lala",
             session_key=self.session.session_key
         )
         drink_category = create_drink_category()
-        create_apple_juice(drink_category)
+        create_beer(drink_category)
         create_orange_juice(drink_category)
 
     def test_cart_creating(self):
@@ -47,7 +48,7 @@ class CartTestCase(TestCase):
 
     def test_add_to_cart(self):
         cart = Cart(CartModel.objects.get(name="Cart1"))
-        dish = DishModel.objects.get(name="Apple juice")
+        dish = DishModel.objects.get(name="Beer")
         cart.add_item(dish, dish.price, 1)
         self.assertEqual(cart.count(), 1)
         cart.add_item(dish, dish.price, 2)
@@ -55,7 +56,7 @@ class CartTestCase(TestCase):
 
     def test_remove_from_cart(self):
         cart = Cart(CartModel.objects.get(name="Cart1"))
-        dish = DishModel.objects.get(name="Apple juice")
+        dish = DishModel.objects.get(name="Beer")
         cart.add_item(dish, dish.price, 2)
         cart.remove_item(dish)
         self.assertEqual(cart.count(), 0)
@@ -64,7 +65,7 @@ class CartTestCase(TestCase):
 
     def test_update_dish_in_cart(self):
         cart = Cart(CartModel.objects.get(name="Cart1"))
-        dish = DishModel.objects.get(name="Apple juice")
+        dish = DishModel.objects.get(name="Beer")
         with self.assertRaises(ItemDoesNotExist):
             cart.update_item(dish, 2, dish.price)
         cart.add_item(dish, dish.price, 4)
@@ -73,24 +74,24 @@ class CartTestCase(TestCase):
 
     def test_cart_summary(self):
         cart = Cart(CartModel.objects.get(name="Cart1"))
-        apple_juice = DishModel.objects.get(name="Apple juice")
+        beer = DishModel.objects.get(name="Beer")
         orange_juice = DishModel.objects.get(name="Orange juice")
-        apple_juice_count = 2
+        beer_count = 2
         orange_juice_count = 3
-        cart.add_item(apple_juice, apple_juice.price, apple_juice_count)
+        cart.add_item(beer, beer.price, beer_count)
         cart.add_item(orange_juice, orange_juice.price, orange_juice_count)
         self.assertEqual(
             cart.summary(),
-            apple_juice_count*apple_juice.price + orange_juice_count*orange_juice.price
+            beer_count*beer.price + orange_juice_count*orange_juice.price
         )
 
     def test_cart_clear(self):
         cart = Cart(CartModel.objects.get(name="Cart1"))
-        apple_juice = DishModel.objects.get(name="Apple juice")
+        beer = DishModel.objects.get(name="Beer")
         orange_juice = DishModel.objects.get(name="Orange juice")
-        apple_juice_count = 2
+        beer_count = 2
         orange_juice_count = 3
-        cart.add_item(apple_juice, apple_juice.price, apple_juice_count)
+        cart.add_item(beer, beer.price, beer_count)
         cart.add_item(orange_juice, orange_juice.price, orange_juice_count)
         cart.clear()
         self.assertEqual(cart.count(), 0)
@@ -187,3 +188,12 @@ class CartTestCase(TestCase):
         response = self.client.post("/carts/update/%d/" % cart.id, data)
         self.assertEqual(response.status_code, 302)
         CartModel.objects.get(name=data['name'])
+
+    def test_cart_list_view(self):
+        response = self.client.get("/carts/")
+        self.assertEqual(response.status_code, 200)
+
+    def test_cart_detail_view(self):
+        cart = Cart(self.cart_model)
+        response = self.client.get(cart.get_absolute_url())
+        self.assertEqual(response.status_code, 200)

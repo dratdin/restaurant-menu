@@ -64,7 +64,7 @@ class Cart:
 
     def delete(self, session):
         if self.is_current(session):
-            raise CurrentCartCantBeDeleted
+            raise CurrentCartCantBeDeleted('You cant delete current cart!')
         else:
             self.cart.delete()
 
@@ -136,7 +136,7 @@ class Cart:
         session[CART_ID] = self.id
 
     def is_current(self, session):
-        return self.id == session[CART_ID]
+        return self.id == session.get(CART_ID, None)
 
     # PROPERTIES
     @property
@@ -171,9 +171,6 @@ class Cart:
     @staticmethod
     def get(session, id):
         cart_model = get_object_or_404(models.Cart, id=id, checked_out=False)
-        print(session.session_key)
-        print('±±±±±±±±±±±±±±±±')
-        print(cart_model.session_key)
         if session.session_key == cart_model.session_key:
             return Cart(cart_model)
         else:

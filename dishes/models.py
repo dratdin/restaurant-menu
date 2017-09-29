@@ -12,7 +12,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name = 'Category'
-        verbose_name_plural = 'Categoriess'
+        verbose_name_plural = 'Categories'
 
     def __str__(self):
         return 'Category %s' % self.name

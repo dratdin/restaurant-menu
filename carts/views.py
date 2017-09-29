@@ -65,7 +65,10 @@ def cart_update(request, id=None):
 @enable_session_key
 def cart_delete(request, id=None):
     cart = Cart.get(request.session, id)
-    cart.delete(request.session)
+    try:
+        cart.delete(request.session)
+    except CurrentCartCantBeDeleted as e:
+        raise Http404(str(e))
     return redirect('carts:list')
 
 @enable_session_key

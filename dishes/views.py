@@ -1,17 +1,15 @@
-from django.shortcuts import render, get_object_or_404, Http404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from dishes.models import *
 
 from functools import wraps
 
 def dish_list(request, category_slug=None):
-    category = Category.objects.filter(slug=category_slug)
     if category_slug is None:
         dishes = Dish.objects.all()
     else:
+        category = get_object_or_404(Category, slug=category_slug)
         dishes = Dish.objects.filter(category=category)
-        if not dishes:
-            raise Http404("Category not found")
     sort_param_name = 'sort'
     sort = request.GET.get(sort_param_name)
     if sort == 'asc':
