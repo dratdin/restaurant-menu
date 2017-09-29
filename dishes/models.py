@@ -25,8 +25,6 @@ class Dish(models.Model):
     description = models.TextField()
     image = models.ImageField(
         upload_to=upload_location,
-        null=True,
-        blank=True,
         width_field='width_field',
         height_field='height_field',
         verbose_name='Image'

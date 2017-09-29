@@ -19,7 +19,7 @@ git clone https://github.com/dratdin/restaurant-menu.git
 ```
 
 ```
-cd app
+cd restaurant-menu
 ```
 
 ```
@@ -29,6 +29,9 @@ python3 manage.py loaddata 'categories.json'
 python3 manage.py loaddata 'dishes.json'
 python3 manage.py runserver
 ```
+
+### Enable admin
+python3 manage.py createsuperuser
 
 ### Check code coverage
 ```
