@@ -17,6 +17,8 @@ CART_PK = 'CART-PK'
 def create_default_cart(session):
     DEFAULT_NAME = 'My first cart'
     DEFAULT_DESCRIPTION = 'Automatically created cart...'
+    print('ALALALALALLALA')
+    print(session.session_key)
     return Cart.objects.create(
         session_key=session.session_key, 
         name=DEFAULT_NAME, 
@@ -139,9 +141,6 @@ class Cart(models.Model):
 
     @staticmethod
     def current_cart(session):
-        """
-            This is the only method which check the existence of session key
-        """
         cart_pk = session.get(CART_PK)
         if cart_pk:
             try:

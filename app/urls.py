@@ -10,7 +10,7 @@ from carts.views import (
 urlpatterns = [
     url(r'^$', dish_list, name="index"),
     url(r'^dishes/', include("dishes.urls", namespace='dishes')),
-    url(r'^carts/$', carts_app, name="crarts"),
+    url(r'^carts/$', carts_app, name="carts"),
     url(r'^api/carts/', include("carts.api.urls", namespace='carts-api')),
     url(r'^admin/', admin.site.urls),
 ]

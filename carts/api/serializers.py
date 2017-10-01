@@ -25,7 +25,13 @@ class CartDetailSerializer(ModelSerializer):
     item_set = CartItemSerializer(many=True, read_only=True)
     class Meta:
         model = Cart
-        fields = '__all__'
+        fields = [
+            'name',
+            'description',
+            'count',
+            'summary',
+            'item_set'
+        ]
 
 class CartCreateUpdateSerializer(ModelSerializer):
     class Meta:
