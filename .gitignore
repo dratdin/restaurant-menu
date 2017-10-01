@@ -2,3 +2,25 @@
 __pycache__
 .DS_Store
 db.sqlite3
+
+
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+# dependencies
+carts-client/node_modules
+carts-client/npm-debug.log*
+carts-client/yarn-debug.log*
+carts-client/yarn-error.log*
+
+# testing
+carts-client/coverage
+
+# production
+carts-client/build
+
+# misc
+carts-client/.DS_Store
+carts-client/.env.local
+carts-client/.env.development.local
+carts-client/.env.test.local
+carts-client/.env.production.local
+

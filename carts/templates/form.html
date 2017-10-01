@@ -1,8 +1,0 @@
-{{ form.non_field_errors }}
-{% for field in form %}
-  <div class="form-group">
-    {{ field.errors }}
-    <div>{{ field.label_tag }}</div>
-    {{ field }}
-  </div>
-{% endfor %}

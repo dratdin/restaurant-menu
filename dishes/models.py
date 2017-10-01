@@ -63,3 +63,4 @@ class Dish(models.Model):
     class Meta:
         verbose_name = 'Dish'
         verbose_name_plural = 'Dishes'
+        ordering = ['-created_at']

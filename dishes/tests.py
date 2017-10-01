@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.test import Client
 
-from carts.Cart import *
 from dishes.models import Dish
 from dishes.models import Category
 
