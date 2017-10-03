@@ -2,6 +2,7 @@ import React from 'react'
 import { Router, Route, Link } from "react-router-dom"
 import createBrowserHistory from "history/createBrowserHistory"
 import List from './List'
+import Cart from './Cart'
 
 const history = createBrowserHistory();
 
@@ -29,6 +30,7 @@ class App extends React.Component {
                         <main className="col-10" role="main">
                             <Route exact path="/" component={List} />
                             <Route exact path="/new-cart" component={NewCart} />
+                            <Route exact path="/detail/:pk" component={Cart} />
                         </main>
                     </div>
                 </div>

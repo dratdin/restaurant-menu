@@ -17,8 +17,6 @@ CART_PK = 'CART-PK'
 def create_default_cart(session):
     DEFAULT_NAME = 'My first cart'
     DEFAULT_DESCRIPTION = 'Automatically created cart...'
-    print('ALALALALALLALA')
-    print(session.session_key)
     return Cart.objects.create(
         session_key=session.session_key, 
         name=DEFAULT_NAME, 
@@ -46,7 +44,7 @@ class Cart(models.Model):
         for item in self.item_set.all():
             result += item.total_price
         return result
-
+        
     def clean(self):
         try:
             cart = Cart.objects.get(name=self.name, session_key=self.session_key)

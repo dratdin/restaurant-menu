@@ -1,8 +1,9 @@
 import React from 'react'
-import ListItem from './ListItem'
 
 import DeleteImg from './img/trash.png'
 import EditImg from './img/pencil.png'
+
+import { Link } from "react-router-dom"
 
 class List extends React.Component {
     state = {
@@ -12,12 +13,12 @@ class List extends React.Component {
     loadCarts() {
         window.$.ajax({
             method: 'GET',
-            url: 'http://localhost:8000/api/carts/',
+            url: '/api/carts/',
             success: (data) => {
                 this.setState({carts: data})
             },
             error: () => {
-                console.error('Cart loading was failed');
+                console.error('Carts loading was failed');
             }
         });
     }
@@ -43,7 +44,9 @@ class List extends React.Component {
                     {this.state.carts.map((cart, index) => (
                         <tr className="product" key={index}>
                         <td>
-                            <h5 className="nomargin">{ cart['name'] }</h5>
+                            <Link to={`/detail/${cart.pk}`}>
+                                <h5 className="nomargin">{ cart['name'] }</h5>
+                            </Link>
                             <p>{ cart['description'] }</p>
                         </td>
                         <td data-th="Items">{ cart['count'] }</td>
