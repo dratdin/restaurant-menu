@@ -1,6 +1,5 @@
 {% load static %}
 {% load categories %}
-{% load cart %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,16 +16,15 @@
   <nav class="navbar navbar-dark bg-primary">
     <div class="container">
       <a class="navbar-brand" href="/">Menu</a>
-      {% get_current_cart session=request.session as current_cart %}
-      <a class="Cart my-2 my-lg-0" href="{{ current_cart.get_absolute_url }}">
+      <a class="Cart my-2 my-lg-0" href="{% url 'carts' %}">
         <div class="cart">
           <img class="cart__img" src="{% static 'img/cart.png' %}" alt="">
           <div class="cart__info">
-            <div class="cart__name">{{ current_cart.name }}</div>
+            <div class="cart__name"></div>
             <div class="cart__Count">
               Items count:
-              <span class="cart__count">{{ current_cart.count }}</span>
-              ($<span class="cart__sum">{{ current_cart.summary }}</span>)
+              <span class="cart__count"></span>
+              ($<span class="cart__sum"></span>)
             </div>
           </div>
 
@@ -66,7 +64,7 @@
             </a>
             <div class="card-body">
               <h4 class="card-title">{{ dish.name }}</h4>
-              <button data-url="{% url 'carts:add_to_cart' dish_id=dish.id quantity=1 %}" class="btn btn-primary cart-add">Add to cart</button>
+              <button data-url="{% url 'carts-api:add-to-cart' dish_id=dish.id quantity=1 %}" class="btn btn-primary cart-add">Add to cart</button>
             </div>
           </div>
         </div>

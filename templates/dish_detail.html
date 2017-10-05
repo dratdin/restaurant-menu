@@ -23,7 +23,7 @@
     <p>
       PREPARING TIME: {{ dish.preparing_time }}
     </p>
-    <button data-url="{% url 'carts:add_to_cart' dish_id=dish.id quantity=1 %}" class="btn btn-primary cart-add">Add to cart</button>
+    <button data-url class="btn btn-primary cart-add">Add to cart</button>
     <div>
       <small class="text-muted">Last updated {{ dish.updated_at }}</small>
     </div>
