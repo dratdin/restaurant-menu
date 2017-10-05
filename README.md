@@ -31,7 +31,7 @@ python3 manage.py runserver
 ```
 
 After need to run react application 
-(In production version of this project python server must return built react application
+(In production version of this project python or nginx(it's better) server must return built react application
 but in development mode we just run node.js server which work in proxy mode )
 
 ```
