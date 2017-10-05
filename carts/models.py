@@ -1,15 +1,18 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.core.urlresolvers import reverse
+from rest_framework.exceptions import ValidationError
+
+class NotUniqName(ValidationError):
+    pass
 
 from dishes.models import Dish
 
-class CurrentCartCantBeDeleted(Exception):
+class CurrentCartCantBeDeleted(ValidationError):
     pass
 
-class ItemDoesNotExist(Exception):
+class ItemDoesNotExist(ValidationError):
     pass
 
 CART_PK = 'CART-PK'
@@ -49,10 +52,7 @@ class Cart(models.Model):
         try:
             cart = Cart.objects.get(name=self.name, session_key=self.session_key)
             if cart.pk != self.pk:
-                raise ValidationError(
-                    'You already have %(name)s cart, you need to choose another name',
-                    params={'name': self.name},
-                )
+                raise NotUniqName(detail='You already have cart with this name.')
         except Cart.DoesNotExist:
             pass
 

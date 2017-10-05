@@ -42,7 +42,7 @@ class Cart extends React.Component {
 
     render() {
         return (
-            <div className="pl-3">
+            <div>
                 <h1>{ this.state.cart['name'] }</h1>
 
                 <table id="cart" className="table table-hover table-condensed border">
