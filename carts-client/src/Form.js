@@ -31,7 +31,7 @@ class Form extends React.Component {
             name: this.state.name, 
             description: this.state.description
         };
-        ajaxSetup();
+        
         window.$.ajax({
             method: 'POST',
             url: url,
@@ -56,7 +56,7 @@ class Form extends React.Component {
             name: this.state.name, 
             description: this.state.description
         };
-        ajaxSetup();
+        
         window.$.ajax({
             method: 'PUT',
             url: url,
@@ -90,6 +90,7 @@ class Form extends React.Component {
     }
 
     componentDidMount() {
+        ajaxSetup();
         if(this.props.action === "update")
             this.loadCart();
     }

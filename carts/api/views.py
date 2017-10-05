@@ -39,6 +39,8 @@ class CartCreateAPIView(CreateAPIView):
     serializer_class = CartCreateUpdateSerializer
 
     def perform_create(self, serializer):
+        if not self.request.session.session_key:
+            self.request.session.save()
         serializer.save(session_key=self.request.session.session_key)
 
 class CartUpdateAPIView(RetrieveModelMixin, 
