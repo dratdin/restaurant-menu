@@ -25,8 +25,8 @@ cd restaurant-menu
 ```
 pip3 install -r requirements.txt
 python3 manage.py migrate
-python3 manage.py loaddata 'categories.json'
-python3 manage.py loaddata 'dishes.json'
+python3 manage.py loaddata dishes/fixtures/categories.json
+python3 manage.py loaddata dishes/fixtures/dishes.json
 python3 manage.py runserver
 ```
 
