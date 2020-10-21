@@ -1,5 +1,5 @@
-from django.shortcuts import redirect, get_object_or_404
-from dishes.models import Dish
+from django.shortcuts import redirect
+
 
 def carts_app(request):
-    return redirect('http://localhost:3000')
+    return redirect("http://localhost:3000")

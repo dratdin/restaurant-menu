@@ -1,15 +1,10 @@
-from django.test import TestCase
-from django.test import Client
-
 from django.core.exceptions import ValidationError
+from django.test import Client, TestCase
 
-from carts.models import *
+from carts.exceptions import CurrentCartCantBeDeleted
+from carts.models import Cart, Item
+from dishes.tests import create_beer, create_drink_category, create_orange_juice
 
-from dishes.tests import (
-    create_drink_category, 
-    create_beer,
-    create_orange_juice
-)
 
 class CartTestCase(TestCase):
     def setUp(self):
@@ -21,7 +16,7 @@ class CartTestCase(TestCase):
         self.cart = Cart.objects.create(
             name="Cart1",
             description="Lala",
-            session_key=self.client.session.session_key
+            session_key=self.client.session.session_key,
         )
 
     def test_cart_creating(self):
@@ -29,13 +24,13 @@ class CartTestCase(TestCase):
 
     def test_cart_creating_invalid(self):
         """
-            Create cart with existing name for this client
+        Create cart with existing name for this client
         """
         with self.assertRaises(ValidationError):
-            new_cart = Cart.objects.create(
+            Cart.objects.create(
                 name=self.cart.name,
                 description="Lala",
-                session_key=self.client.session.session_key
+                session_key=self.client.session.session_key,
             )
 
     def test_cart_update(self):
@@ -46,12 +41,12 @@ class CartTestCase(TestCase):
 
     def test_cart_update_invalid(self):
         """
-            Update cart with existing name for this client
+        Update cart with existing name for this client
         """
         new_cart = Cart.objects.create(
             name="Cart2",
             description="Lala",
-            session_key=self.client.session.session_key
+            session_key=self.client.session.session_key,
         )
         new_cart.name = self.cart.name
         new_cart.description = self.cart.description
@@ -66,7 +61,7 @@ class CartTestCase(TestCase):
 
     def test_cart_delete_invalid(self):
         """
-            Try to delete current cart
+        Try to delete current cart
         """
         self.cart.set_as_current(self.client.session)
         with self.assertRaises(CurrentCartCantBeDeleted):
@@ -79,7 +74,7 @@ class CartTestCase(TestCase):
         self.assertEqual(self.cart.count, 3)
 
     def test_update_item_in_cart(self):
-        with self.assertRaises(ItemDoesNotExist):
+        with self.assertRaises(Item.DoesNotExist):
             self.cart.update_item(self.beer, 2)
         self.cart.add_item(self.beer, self.beer.price, 2)
         self.cart.update_item(self.beer, 1)
@@ -89,7 +84,7 @@ class CartTestCase(TestCase):
         self.cart.add_item(self.beer, self.beer.price, 2)
         self.cart.remove_item(self.beer)
         self.assertEqual(self.cart.count, 0)
-        with self.assertRaises(ItemDoesNotExist):
+        with self.assertRaises(Item.DoesNotExist):
             self.cart.remove_item(self.beer)
 
     def test_clear_cart(self):
@@ -100,11 +95,11 @@ class CartTestCase(TestCase):
 
     def test_current_cart(self):
         # Case when session doesn't have cart_pk
-        current_cart = Cart.current_cart(self.client.session)
+        current_cart = Cart.get_current_cart(self.client.session)
         self.assertIsInstance(current_cart, Cart)
         self.assertTrue(current_cart.is_current(self.client.session))
         # Case when session has valid cart_pk
         self.cart.set_as_current(self.client.session)
         self.assertTrue(self.cart.is_current(self.client.session))
-        current_cart = Cart.current_cart(self.client.session)
+        current_cart = Cart.get_current_cart(self.client.session)
         self.assertEqual(self.cart.pk, current_cart.pk)

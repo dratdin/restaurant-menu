@@ -1,11 +1,12 @@
+from django.conf import settings
 from django.test import TestCase
-from django.test import Client
 
-from dishes.models import Dish
-from dishes.models import Category
+from dishes.models import Category, Dish
+
 
 def create_drink_category():
     return Category.objects.create(name="Drinks", slug="drinks")
+
 
 def create_beer(category):
     return Dish.objects.create(
@@ -13,9 +14,10 @@ def create_beer(category):
         description="...",
         price=1.25,
         slug="beer",
-        image="dishes/fixtures/drinks/beer.png",
-        category=category
+        image=settings.MEDIA_ROOT + "/dishes/fixtures/drinks/beer.png",
+        category=category,
     )
+
 
 def create_orange_juice(category):
     return Dish.objects.create(
@@ -23,9 +25,10 @@ def create_orange_juice(category):
         description="...",
         price=2.00,
         slug="orange-juice",
-        image="dishes/fixtures/drinks/orange-juice.jpeg",
-        category=category
+        image=settings.MEDIA_ROOT + "/dishes/fixtures/drinks/orange-juice.jpeg",
+        category=category,
     )
+
 
 class CartTestCase(TestCase):
     def setUp(self):
@@ -42,17 +45,17 @@ class CartTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_dish_detail_view_invalid_slug(self):
-        response = self.client.get('/dishes/%s/' % 'not-existing-dish')
+        response = self.client.get("/dishes/%s/" % "not-existing-dish")
         self.assertEqual(response.status_code, 404)
 
     def test_dish_list_empty_params(self):
-        response = self.client.get('/')
+        response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
 
     def test_dish_list_valid_category(self):
-        response = self.client.get('/dishes/category/%s/' % self.drink_category.slug)
+        response = self.client.get("/dishes/category/%s/" % self.drink_category.slug)
         self.assertEqual(response.status_code, 200)
 
     def test_dish_list_invalid_category(self):
-        response = self.client.get('/dishes/category/%s/' % 'not-existing-category')
+        response = self.client.get("/dishes/category/%s/" % "not-existing-category")
         self.assertEqual(response.status_code, 404)
